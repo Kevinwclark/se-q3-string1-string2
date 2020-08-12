@@ -4,7 +4,7 @@ Kenzie assignment: String2
 """
 # Your name, plus anyone who helped you with this assignment.
 # Give credit where credit is due.
-__author__ = "???"
+__author__ = "Kevin Clark"
 
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
@@ -23,9 +23,14 @@ __author__ = "???"
 
 
 def verbing(s):
-    # your code here
-    return
-
+    length = len(s)
+    if length < 3:
+        return s
+    elif s.endswith('ing'):
+        s += 'ly'
+    else:
+        s += 'ing'
+    return s
 
 # E. not_bad
 # Given a string, find the first occurrence of the substrings
@@ -37,8 +42,20 @@ def verbing(s):
 
 
 def not_bad(s):
-    # your code here
-    return
+    test = s.endswith('!')
+    clean = s.rstrip('!')
+    words = clean.split()
+    if words.count('bad') < 1:
+        return s
+    a = words.index('not')
+    b = words.index('bad')
+    if a < b:
+        if test:
+            return f"{' '.join(words[0:a])} good!"
+        else:
+            return f"{' '.join(words[0:a])} good"
+    else:
+        return s
 
 
 # F. front_back
@@ -52,8 +69,29 @@ def not_bad(s):
 
 
 def front_back(a, b):
-    # your code here
-    return
+    testa = len(a) % 2
+    testb = len(b) % 2
+    a_front = ''
+    a_back = ''
+    b_front = ''
+    b_back = ''
+    middlea_uneven = int((len(a) - 1)/2 + 1)
+    middleb_uneven = int((len(b) - 1)/2 + 1)
+    if testa == 0:
+        num = int(len(a)/2)
+        a_front += a[:num]
+        a_back += a[num:]
+    else:
+        a_front += a[:middlea_uneven]
+        a_back += a[middlea_uneven:]
+    if testb == 0:
+        num1 = int(len(b)/2)
+        b_front += b[:num1]
+        b_back += b[num1:]
+    else:
+        b_front += b[:middleb_uneven]
+        b_back += b[middleb_uneven:]
+    return f"{a_front}{b_front}{a_back}{b_back}"
 
 
 # Provided simple test() function used in main() to print
